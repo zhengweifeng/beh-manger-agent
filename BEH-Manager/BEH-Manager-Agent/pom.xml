@@ -17,6 +17,31 @@
     <hadoop.version>2.6.0-cdh5.7.0</hadoop.version>
 
   </properties>
+  <repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus repository</name>
+			<url>http://172.16.43.41:8081/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>spring</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://maven.springframework.org/release//</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>cdh</id>
+			<name>Maven Repository cdh</name>
+			<layout>default</layout>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
