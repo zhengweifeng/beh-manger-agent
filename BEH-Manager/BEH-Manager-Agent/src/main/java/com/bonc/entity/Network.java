@@ -2,24 +2,24 @@ package com.bonc.entity;
 
 public class Network {
 	/**
-	 * 网卡名称
+	 * 网络接口
 	 */
 	private String name;
 	/**
 	 * 接收大小
 	 * byte
 	 */
-	private String receiveSize;
+	private long receiveSize;
 	/**
 	 * 接收包数
 	 */
-	private String receivePacket;
-	private String receiveErrs;
-	private String receiveDrop;
-	private String sendSize;
-	private String sendPacket;
-	private String sendErrs;
-	private String sendDrop;
+	private long receivePacket;
+	private long receiveErrs;
+	private long receiveDrop;
+	private long sendSize;
+	private long sendPacket;
+	private long sendErrs;
+	private long sendDrop;
 	
 	public String getName() {
 		return name;
@@ -27,53 +27,59 @@ public class Network {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getReceiveSize() {
+	public long getReceiveSize() {
 		return receiveSize;
 	}
-	public void setReceiveSize(String receiveSize) {
+	public void setReceiveSize(long receiveSize) {
 		this.receiveSize = receiveSize;
 	}
-	public String getReceivePacket() {
+	public long getReceivePacket() {
 		return receivePacket;
 	}
-	public void setReceivePacket(String receivePacket) {
+	public void setReceivePacket(long receivePacket) {
 		this.receivePacket = receivePacket;
 	}
-	public String getReceiveErrs() {
+	public long getReceiveErrs() {
 		return receiveErrs;
 	}
-	public void setReceiveErrs(String receiveErrs) {
+	public void setReceiveErrs(long receiveErrs) {
 		this.receiveErrs = receiveErrs;
 	}
-	public String getReceiveDrop() {
+	public long getReceiveDrop() {
 		return receiveDrop;
 	}
-	public void setReceiveDrop(String receiveDrop) {
+	public void setReceiveDrop(long receiveDrop) {
 		this.receiveDrop = receiveDrop;
 	}
-	public String getSendSize() {
+	public long getSendSize() {
 		return sendSize;
 	}
-	public void setSendSize(String sendSize) {
+	public void setSendSize(long sendSize) {
 		this.sendSize = sendSize;
 	}
-	public String getSendPacket() {
+	public long getSendPacket() {
 		return sendPacket;
 	}
-	public void setSendPacket(String sendPacket) {
+	public void setSendPacket(long sendPacket) {
 		this.sendPacket = sendPacket;
 	}
-	public String getSendErrs() {
+	public long getSendErrs() {
 		return sendErrs;
 	}
-	public void setSendErrs(String sendErrs) {
+	public void setSendErrs(long sendErrs) {
 		this.sendErrs = sendErrs;
 	}
-	public String getSendDrop() {
+	public long getSendDrop() {
 		return sendDrop;
 	}
-	public void setSendDrop(String sendDrop) {
+	public void setSendDrop(long sendDrop) {
 		this.sendDrop = sendDrop;
+	}
+	@Override
+	public String toString() {
+		return "Network [name=" + name + ", receiveSize=" + receiveSize + ", receivePacket=" + receivePacket
+				+ ", receiveErrs=" + receiveErrs + ", receiveDrop=" + receiveDrop + ", sendSize=" + sendSize
+				+ ", sendPacket=" + sendPacket + ", sendErrs=" + sendErrs + ", sendDrop=" + sendDrop + "]";
 	}
 	
 	
