@@ -42,7 +42,7 @@ public class NetworkParse {
 					monitor.setUploadErr(net2.getSendErrs() - net1.getSendErrs()/(SLEEP_TIME/1000));
 					monitor.setUploadDrop(net2.getSendDrop() - net1.getSendDrop()/(SLEEP_TIME/1000));
 					list.add(monitor);
-					System.out.println(monitor);
+					//System.out.println(monitor);
 				}
 			}
 		}
@@ -58,7 +58,7 @@ public class NetworkParse {
 			reader = new BufferedReader(new FileReader(new File(PROC_NET_DEV)));
 			String line = null;
 			while((line = reader.readLine()) != null) {
-				System.out.println(line);
+				//System.out.println(line);
 				if(line.startsWith("Inter-|") || line.trim().startsWith("face |bytes")) {
 					continue;
 				} 
@@ -75,7 +75,7 @@ public class NetworkParse {
 				net.setSendErrs(Long.parseLong(arr[11]));
 				net.setSendDrop(Long.parseLong(arr[12]));
 				list.add(net);
-				System.out.println(net);
+				//System.out.println(net);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

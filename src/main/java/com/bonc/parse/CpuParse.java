@@ -76,7 +76,7 @@ public class CpuParse {
 			}
 			
 		}
-		System.out.println(cpu);
+		//System.out.println(cpu);
 		return cpu;
 	}
 	/**
@@ -94,7 +94,7 @@ public class CpuParse {
 		Cpu cpu2 = readerProcStat();
 		CpuMonitor monitor = new CpuMonitor();
 		monitor.createCpuMonitor(cpu1, cpu2, sleep_time);
-		System.out.println(monitor);
+		//System.out.println(monitor);
 		return monitor;
 	}
 	
