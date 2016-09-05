@@ -48,7 +48,7 @@ public class DiskParse {
 					io.setRequest(d2.getRead() + d2.getWrite() - d1.getRead() - d1.getWrite());
 				}
 			}
-			System.out.println(io);
+			//System.out.println(io);
 			list.add(io);
 		}
 		return list;
@@ -89,7 +89,7 @@ public class DiskParse {
 						disk.setRequest(Long.parseLong(arr[11]));
 						disk.setRequestTime(Long.parseLong(arr[12]));
 						disk.setRequestComTime(Long.parseLong(arr[13]));
-						System.out.println(disk);
+						//System.out.println(disk);
 						list.add(disk);
 					}
 				}
@@ -116,7 +116,7 @@ public class DiskParse {
 		try {
 			list = util.exec(DF);
 			for(String str : list) {
-				System.out.println(str);
+				//System.out.println(str);
 				String[] arr = str.trim().split(" +");
 				if(arr[0].equals("Filesystem")) {
 					continue;
@@ -124,7 +124,7 @@ public class DiskParse {
 				for(Disk disk : diskList) {
 					if(("/dev/" + disk.getName()).equals(arr[0])) {
 						disk.setUsed(Long.parseLong(arr[2]));
-						System.out.println(disk);
+						//System.out.println(disk);
 					}
 				}
 			}
@@ -135,7 +135,7 @@ public class DiskParse {
 			util.close();
 		}
 		
-		return null;
+		return diskList;
 	}
 	
 	
@@ -156,7 +156,7 @@ public class DiskParse {
 
 			String diskName = null;
 			for (String line : list) {
-				System.out.println(line);
+				//System.out.println(line);
 				String[] arr = line.trim().split(" +");
 				if (arr.length >= 6) {
 
