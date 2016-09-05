@@ -9,6 +9,9 @@ public class ApplicationServer {
 
 	public static void main(String[] args) throws Exception {
 		
+		
+		
+		
 		CpuParse cp = new CpuParse();
 		cp.getCpuMonitor();
 		
@@ -22,6 +25,13 @@ public class ApplicationServer {
 		DiskParse dp = new DiskParse();
 		dp.getDiskStatus();
 		dp.getDiskIO();
+		
+	}
+	
+	
+	private void parseArgs(){
+		
+		
 		
 	}
 	
