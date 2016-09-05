@@ -20,6 +20,16 @@ public class ConfigurationUtil {
 		}
 		return propMap.get(key);
 	}
+	public static String get(String key,String defaultValue) {
+		if(propMap == null) {
+			readPropBySort();
+		}
+		String value = propMap.get(key);
+		if(value == null || value.equals("")) {
+			return defaultValue;
+		}
+		return value;
+	}
 	
 	public static void init(String path) {
 		confPath = path;
