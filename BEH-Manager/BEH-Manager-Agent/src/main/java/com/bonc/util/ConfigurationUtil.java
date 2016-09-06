@@ -35,15 +35,6 @@ public class ConfigurationUtil {
 		confPath = path;
 		readPropBySort();
 	}
-	
-	public static void main(String[] args) {
-		
-		ConfigurationUtil.init("/aaa");
-		System.out.println(ConfigurationUtil.class.getResource("/").getFile().toString());
-		System.out.println(ConfigurationUtil.get("ssh.auth.userName"));
-		
-	}
-	
 
 	/**
 	 * 顺序读取配置文件，顺序：
@@ -56,7 +47,7 @@ public class ConfigurationUtil {
 		try {
 			readPropFile(ConfigurationUtil.class.getResourceAsStream("/agent-conf.properties"));
 			readPropFile(new File(System.getProperties().getProperty("user.dir") + "/agent-conf.properties"));
-			if(confPath != null) {				
+			if(confPath != null) {			
 				readPropFile(new File(confPath));
 			}
 		} catch (FileNotFoundException e) {
@@ -72,7 +63,7 @@ public class ConfigurationUtil {
 	 * @throws IOException
 	 */
 	private static void readPropFile(File f) throws FileNotFoundException, IOException {
-		
+		System.out.println("read file : " + f.getPath());
 		if(!f.exists() && !f.isFile()) {
 			System.out.println("ERROR : the path specified  " + f.getAbsolutePath()  +" no exists or is not a file");
 			return ;
