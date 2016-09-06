@@ -92,12 +92,32 @@ public class CpuParse {
 			e.printStackTrace();
 		}
 		Cpu cpu2 = readerProcStat();
+		
+		return createCpuMonitor(cpu1, cpu2);
+	}
+	/**
+	 * 获取sleep时间内的cpu使用情况
+	 * cpu2 - cpu1
+	 * cpu时间单位0.01秒 ＝ 10毫秒
+	 *  *10 单位换算成 毫秒
+	 *  ＊100 百分比 
+	 */
+	public CpuMonitor createCpuMonitor(Cpu cpu1,Cpu cpu2) {
 		CpuMonitor monitor = new CpuMonitor();
-		monitor.createCpuMonitor(cpu1, cpu2, sleep_time);
-		//System.out.println(monitor);
+		long totalTime = cpu2.getUserTime() + cpu2.getSystemTime() + cpu2.getNiceTime() + 
+				cpu2.getFreeTime() + cpu2.getIowait() + cpu2.getIrq() +  cpu2.getSoftirq() + cpu2.getSteal() -
+				(cpu1.getUserTime() + cpu1.getSystemTime() + cpu1.getNiceTime() + 
+						cpu1.getFreeTime() + cpu1.getIowait() + cpu1.getIrq() +  cpu1.getSoftirq() + cpu1.getSteal());
+		monitor.setUs((cpu2.getUserTime() - cpu1.getUserTime())*100.0F/totalTime);
+		monitor.setSy((cpu2.getSystemTime() - cpu1.getSystemTime())*100.0F/totalTime);
+		monitor.setNi((cpu2.getNiceTime() - cpu1.getNiceTime())*100.0F / totalTime) ;
+		monitor.setId((cpu2.getFreeTime() - cpu1.getFreeTime())*100.0F / totalTime) ;
+		monitor.setWa((cpu2.getIowait() - cpu1.getIowait())*1000 / totalTime) ;
+		monitor.setHi((cpu2.getIrq() - cpu1.getIrq())*1000 / totalTime);
+		monitor.setSi((cpu2.getSoftirq() - cpu1.getSoftirq())*1000 / totalTime);
+		monitor.setSt((cpu2.getSteal() - cpu1.getSteal())*1000 / totalTime);
 		return monitor;
 	}
-	
 	
 	public static void main(String[] args) {
 		

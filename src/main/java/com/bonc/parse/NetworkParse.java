@@ -64,6 +64,9 @@ public class NetworkParse {
 				} 
 				String arr[] = line.trim().split(" +");
 				Network net = new Network();
+				if(arr.length <= 16) {
+					arr = line.trim().split("\\s+|:");
+				}
 				String name = arr[0].trim().replace(":", "");
 				net.setName(name);
 				net.setReceiveSize(Long.parseLong(arr[1]));
