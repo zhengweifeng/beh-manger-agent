@@ -13,6 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hadoop.version>2.6.0-cdh5.7.0</hadoop.version>
 		<hbase.version>1.2.0-cdh5.7.0</hbase.version>
+		<zookeeper.version>3.4.5-cdh5.7.0</zookeeper.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -51,6 +52,16 @@
 			<artifactId>json-lib</artifactId>
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.52</version>
 		</dependency>
 	</dependencies>
 </project>
