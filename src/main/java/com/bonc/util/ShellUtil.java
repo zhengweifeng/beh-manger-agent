@@ -34,7 +34,7 @@ public class ShellUtil {
 
 	public void createSession(String host, String username, String passwd) {
 		jsch = new JSch();
-		System.out.println("create session : " + host + " " + username + " " + passwd) ;
+		//System.out.println("create session : " + host + " " + username + " " + passwd) ;
 		try {
 			session = jsch.getSession(username, host, 22);
 			session.setPassword(passwd);
@@ -105,7 +105,7 @@ public class ShellUtil {
 
 	public List<String> exec(String cmd) throws Exception {
 		ChannelExec openChannel = (ChannelExec) session.openChannel("exec");
-		System.out.println(cmd);
+		//System.out.println(cmd);
 		openChannel.setCommand(cmd);
 		//int exitStatus = openChannel.getExitStatus();
 		//System.out.println(exitStatus);

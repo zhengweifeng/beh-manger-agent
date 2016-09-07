@@ -145,9 +145,7 @@ public class ApplicationServer {
 		HelpFormatter hf = new HelpFormatter();
 		hf.setWidth(100);
 		CommandLineParser parse = new PosixParser();
-		for(String s : args) {
-			System.out.println(s);
-		}
+
 		CommandLine line = parse.parse(opt, args);
 		if (line.hasOption("h")) {
 			hf.printHelp("beh-manager-agent help", opt);
