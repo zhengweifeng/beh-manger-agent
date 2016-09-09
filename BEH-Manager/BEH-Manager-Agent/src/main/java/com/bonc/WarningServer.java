@@ -1,3 +1,4 @@
+/*
 package com.bonc;
 
 import java.util.List;
@@ -12,29 +13,44 @@ import com.bonc.entity.NetworkMonitor;
 import com.bonc.entity.WarnEntity;
 import com.bonc.export.ExportInterface;
 
+*/
 /**
  * 产生告警信息
  * @author zwf
- *
- */
+ *//*
+
+
+
 public class WarningServer implements Runnable {
 
-	/**
-	 * 告警规则列表
-	 */
+
+*/
+/*	 * 告警规则列表*//*
+
+
+
 	private Map<String, Object> map ;
 	
-	/**
-	 * interface 数据发送接口,或者列表
-	 */
+
+*/
+/*	 * interface 数据发送接口,或者列表*//*
+
+
+
 	private List<ExportInterface> exports;
-	/**
-	 * 数据传输队列
-	 */
+*/
+/**
+	 * 数据传输队列*//*
+
+
+
 	private ArrayBlockingQueue<Object> queue;
-	/**
-	 * 需要输出的map对象
-	 */
+*/
+/**
+	 * 需要输出的map对象*//*
+
+
+
 	private Map<String ,WarnEntity> outputMap;
 	public WarningServer(ArrayBlockingQueue<Object> queue,List<ExportInterface> exports) {
 		this.queue = queue;
@@ -81,3 +97,4 @@ public class WarningServer implements Runnable {
 	
 	
 }
+*/
