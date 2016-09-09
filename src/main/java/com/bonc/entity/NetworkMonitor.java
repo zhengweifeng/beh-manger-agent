@@ -4,7 +4,7 @@ package com.bonc.entity;
  * @author zwf
  *
  */
-public class NetworkMonitor {
+public class NetworkMonitor implements ExportEntityInterface {
 	private String name;
 	private long downSpeed;
 	private long downPack;

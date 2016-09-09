@@ -1,6 +1,6 @@
 package com.bonc.entity;
 
-public class IO {
+public class IO  implements ExportEntityInterface{
 	
 	private String diskName;
 	private long readSpeed;
