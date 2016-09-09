@@ -1,6 +1,6 @@
 package com.bonc.entity;
 
-public class CpuMonitor {
+public class CpuMonitor implements ExportEntityInterface {
 	/**
 	 * 用户空间占用CPU百分比
 	 */
