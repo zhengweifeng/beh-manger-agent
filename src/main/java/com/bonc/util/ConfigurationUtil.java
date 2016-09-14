@@ -1,32 +1,42 @@
 package com.bonc.util;
 
-public class ConfigurationUtil extends BaseConfigUtil {
+public class ConfigurationUtil {
 
 	public static final String fn = "agent-conf.properties";
-	
+	private static BaseConfigUtil base;
+	static {
+		base = new BaseConfigUtil();
+		
+	}
 	public static String get(String key) {
-		if(propMap == null) {
-			readPropBySort();
+		if(base.propMap == null) {
+			init();
 		}
-		return propMap.get(key);
+		return base.propMap.get(key);
 	}
 	public static String get(String key,String defaultValue) {
-		if(propMap == null) {
-			readPropBySort();
+		if(base.propMap == null) {
+			init();
 		}
-		String value = propMap.get(key);
+		String value = base.propMap.get(key);
 		if(value == null || value.equals("")) {
 			return defaultValue;
 		}
 		return value;
 	}
 	public static void init(String path) {
-		fileName = fn;
-		confPath = path + "/" + fn;
-		readPropBySort();
+		base.fileName = fn;
+		base.confPath = path + "/" + fn;
+		base.readPropBySort();
 	}	
 	public static void init() {
-		fileName = fn;
-		readPropBySort();
+		base.fileName = fn;
+		base.readPropBySort();
 	}	
+	
+	public static void main(String[] args) {
+		ConfigurationUtil.init("/");
+		System.out.println(ConfigurationUtil.get("hbase.monitor.family"));
+		
+	}
 }
