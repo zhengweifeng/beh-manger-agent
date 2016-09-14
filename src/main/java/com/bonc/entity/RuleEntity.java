@@ -9,21 +9,13 @@ public class RuleEntity {
 	private String id;
 	//规则名称
 	private String name;
-	//规则类型
-	private RuleType type;
-	//规则作用范围 single or GLOGAL
-	private RuleScope scope;
-	//single 规则 对应主机
-	private String hostName;
-	//规则计算符号
-	private RuleSign sign;
-	//规则限制范围
-	private double limit;
-	//报警级别 警告,还是 错误
-	private RuleLevel level;
-	//报警方式 邮件 or hbase or 短信 or http
-	private RuleMode mode;
-	
+	private String type;
+	private String goal;
+	private String scope;
+	private String sign;
+	private float warnLimit;
+	private float errorLimit;
+	private ConnectionEntity conn;
 	public String getId() {
 		return id;
 	}
@@ -36,73 +28,54 @@ public class RuleEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public RuleType getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(RuleType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
-	public RuleScope getScope() {
+	public String getGoal() {
+		return goal;
+	}
+	public void setGoal(String goal) {
+		this.goal = goal;
+	}
+	public String getScope() {
 		return scope;
 	}
-	public void setScope(RuleScope scope) {
+	public void setScope(String scope) {
 		this.scope = scope;
 	}
-	public String getHostName() {
-		return hostName;
-	}
-	public void setHostName(String hostName) {
-		this.hostName = hostName;
-	}
-	public RuleSign getSign() {
+	public String getSign() {
 		return sign;
 	}
-	public void setSign(RuleSign sign) {
+	public void setSign(String sign) {
 		this.sign = sign;
 	}
-	public double getLimit() {
-		return limit;
+	public float getWarnLimit() {
+		return warnLimit;
 	}
-	public void setLimit(double limit) {
-		this.limit = limit;
+	public void setWarnLimit(String warnLimit) {
+	
+		this.warnLimit = Float.parseFloat(warnLimit);
 	}
-
-	public RuleMode getMode() {
-		return mode;
+	public float getErrorLimit() {
+		return errorLimit;
 	}
-	public void setMode(RuleMode mode) {
-		this.mode = mode;
+	public void setErrorLimit(String errorLimit) {
+		this.errorLimit = Float.parseFloat(errorLimit);
 	}
-	public RuleLevel getLevel() {
-		return level;
+	public ConnectionEntity getConn() {
+		return conn;
 	}
-	public void setLevel(RuleLevel level) {
-		this.level = level;
+	public void setConn(ConnectionEntity conn) {
+		this.conn = conn;
 	}
-	enum RuleScope{
-		SINGLE,GLOGAL
+	@Override
+	public String toString() {
+		return "RuleEntity [id=" + id + ", name=" + name + ", type=" + type + ", goal=" + goal + ", scope=" + scope
+				+ ", sign=" + sign + ", warnLimit=" + warnLimit + ", errorLimit=" + errorLimit + ", conn=" + conn + "]";
 	}
-	enum RuleSign{
-		LG(">"),GE(">=");
-		private String sign;
-		RuleSign(String sign){
-			this.setSign(sign);
-		}
-		public String getSign() {
-			return sign;
-		}
-		public void setSign(String sign) {
-			this.sign = sign;
-		}
-		
-	}
-	enum RuleType{
-		DISK,CPU,IO,MEMORY,NETWORK
-	}
-	enum RuleLevel{
-		WARN,ERROR
-	}
-	enum RuleMode{
-		MAIL,HBASE,MESSAGE,HTTP
-	}
+	
+	
 }
