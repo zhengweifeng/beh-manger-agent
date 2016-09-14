@@ -37,7 +37,7 @@ public class PathWatcher  implements Runnable{
 							if(fileName.equals(ConfigurationUtil.fn)) {
 								ConfigurationUtil.init();
 							} else if(fileName.equals(RuleUtil.fn)) {
-								ConfigurationUtil.init();
+								RuleUtil.init();
 							}
 						}
 					}

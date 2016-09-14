@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public abstract class BaseConfigUtil {
-	protected static Map<String, String> propMap;
-	protected static String confPath ;
-	protected static String fileName;
+public  class BaseConfigUtil {
+	protected  Map<String, String> propMap;
+	protected  String confPath ;
+	protected  String fileName;
 
-	public static void reload() {
+	public  void reload() {
 		readPropBySort();
 	}
 	/**
@@ -23,11 +23,12 @@ public abstract class BaseConfigUtil {
 	 * 2.项目根目录下
 	 * 3.命令行传递的参数
 	 */
-	protected static void readPropBySort(){
+	protected  void readPropBySort(){
 
 		propMap =  new HashMap<String, String>();
 		try {
-			readPropFile(ConfigurationUtil.class.getResourceAsStream("/" + fileName));
+			System.out.println(BaseConfigUtil.class.getResource("/" + fileName));
+			readPropFile(BaseConfigUtil.class.getResourceAsStream("/" + fileName));
 			readPropFile(new File(System.getProperties().getProperty("user.dir") + "/" + fileName));
 			if(confPath != null) {			
 				readPropFile(new File(confPath));
@@ -45,7 +46,7 @@ public abstract class BaseConfigUtil {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	private static void readPropFile(File f) throws FileNotFoundException, IOException {
+	private  void readPropFile(File f) throws FileNotFoundException, IOException {
 		System.out.println("read file : " + f.getPath());
 		if(!f.exists() && !f.isFile()) {
 			System.out.println("ERROR : the path specified  " + f.getAbsolutePath()  +" no exists or is not a file");
@@ -64,11 +65,12 @@ public abstract class BaseConfigUtil {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	private static void readPropFile(InputStream in) throws FileNotFoundException, IOException {
+	private  void readPropFile(InputStream in) throws FileNotFoundException, IOException {
 		
 		Properties prop = new Properties();
 		prop.load(in);
 		for(Object key : prop.keySet()) {
+			System.out.println(key + " : " + prop.getProperty(key.toString()));
 			propMap.put(key.toString(), prop.getProperty(key.toString()));
 		}
 	}
