@@ -4,26 +4,22 @@ public class WarnEntity {
 
 	//告警名称
 	private String name;
-	//类型 软件 or 硬件
-	private String type;
+	
+	private float number;
 	//报警等级 告警 or 错误
 	private String level;
 	//原因
 	private String reason;
 	//来源
-	private String source;
+	private RuleEntity rule;
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
+	
 	public String getLevel() {
 		return level;
 	}
@@ -36,12 +32,23 @@ public class WarnEntity {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public String getSource() {
-		return source;
+	public RuleEntity getRule() {
+		return rule;
 	}
-	public void setSource(String source) {
-		this.source = source;
+	public void setRule(RuleEntity rule) {
+		this.rule = rule;
 	}
 	
+	public float getNumber() {
+		return number;
+	}
+	public void setNumber(float number) {
+		this.number = number;
+	}
+	@Override
+	public String toString() {
+		return "WarnEntity [name=" + name + ", number=" + number + ", level=" + level + ", reason=" + reason + ", rule="
+				+ rule + "]";
+	}
 	
 }
