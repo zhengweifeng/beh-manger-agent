@@ -124,7 +124,7 @@ public class DiskParse {
 				for(Disk disk : diskList) {
 					if(("/dev/" + disk.getName()).equals(arr[0])) {
 						disk.setUsed(Long.parseLong(arr[2]));
-						//System.out.println(disk);
+						disk.setSize(Long.parseLong(arr[1]));
 					}
 				}
 			}
