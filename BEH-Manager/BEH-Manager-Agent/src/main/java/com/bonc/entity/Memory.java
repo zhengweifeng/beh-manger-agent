@@ -1,6 +1,6 @@
 package com.bonc.entity;
 
-public class Memory implements ExportEntityInterface {
+public class Memory  {
 	private long MemTotal;              // 系统可用物理内存总量
 	private long MemFree;             // 系统空闲内物理内存总量 = HighFree+ LowFree
 	private long MemUsed;				// 系统使用的物理内存
