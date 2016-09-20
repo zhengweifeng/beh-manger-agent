@@ -2,7 +2,7 @@ package com.bonc.entity;
 
 import java.util.List;
 
-public class Disk implements ExportEntityInterface {
+public class Disk  {
 	/**
 	 * 主设备编号
 	 */

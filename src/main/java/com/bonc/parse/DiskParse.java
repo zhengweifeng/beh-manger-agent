@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.bonc.entity.Disk;
 import com.bonc.entity.IO;
-import com.bonc.util.ConfigurationUtil;
+import com.bonc.util.PropertiesUtil;
 import com.bonc.util.ShellUtil;
 
 public class DiskParse {
@@ -16,9 +16,9 @@ public class DiskParse {
 	private static String DISK_STAT_FILE = "/proc/diskstats";
 	private static String LSBLK_NLB = "/bin/lsblk -nlb";
 	private static String DF = "/bin/df";
-	private String hostName = ConfigurationUtil.get("ssh.auth.localhost");
-	private String userName = ConfigurationUtil.get("ssh.auth.userName");
-	private String passwd = ConfigurationUtil.get("ssh.auth.passwd");
+	private String hostName = PropertiesUtil.get("ssh.auth.localhost");
+	private String userName = PropertiesUtil.get("ssh.auth.userName");
+	private String passwd = PropertiesUtil.get("ssh.auth.passwd");
 	private static long SLEEP_TIME = 1000;
 
 	public static void main(String[] args) throws Exception {
@@ -60,7 +60,7 @@ public class DiskParse {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Disk> getDiskStat() throws Exception {
+	private List<Disk> getDiskStat() throws Exception {
 
 		File stat = new File(DISK_STAT_FILE);
 		BufferedReader reader = new BufferedReader(new FileReader(stat));
@@ -145,7 +145,7 @@ public class DiskParse {
 	 * 返回:硬盘和分区组成的list列表，包含 类型 硬盘或分区名称，大小，分区所在硬盘，挂在点</br>
 	 * @throws Exception
 	 */
-	public List<Disk> getDiskAndPart() {
+	private List<Disk> getDiskAndPart() {
 
 		ShellUtil util = new ShellUtil();
 		util.createSession(hostName, userName, passwd);
@@ -191,7 +191,7 @@ public class DiskParse {
 	 * 返回： 硬盘名称，主设备ID，次设备ID，block块数
 	 * @throws Exception
 	 */
-	public List<Disk> getDisk() throws Exception {
+	private List<Disk> getDisk() throws Exception {
 
 		File file = new File(DISK_PARTITION_FILE);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
