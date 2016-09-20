@@ -63,5 +63,21 @@
 			<artifactId>jsch</artifactId>
 			<version>0.1.52</version>
 		</dependency>
+		<dependency>
+        	<groupId>commons-configuration</groupId>
+       		<artifactId>commons-configuration</artifactId>
+        	<version>1.8</version>
+    	</dependency>
+		<dependency>
+			<groupId>groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>1.1-rc-1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>2.6.2</version>
+			<type>pom</type>
+		</dependency>
 	</dependencies>
 </project>
