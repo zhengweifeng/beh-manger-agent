@@ -1,6 +1,7 @@
 package com.bonc.entity;
 
 public class Memory  {
+	private String unit = "kb/s";
 	private long MemTotal;              // 系统可用物理内存总量
 	private long MemFree;             // 系统空闲内物理内存总量 = HighFree+ LowFree
 	private long MemUsed;				// 系统使用的物理内存
@@ -54,5 +55,11 @@ public class Memory  {
 	public String toString() {
 		return "MemInfo [MemTotal=" + MemTotal + ", MemFree=" + MemFree + ", MemUsed=" + MemUsed + ", Buffers="
 				+ Buffers + ", Cached=" + Cached + ", SwapTotal=" + SwapTotal + ", SwapFree=" + SwapFree + "]";
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 }

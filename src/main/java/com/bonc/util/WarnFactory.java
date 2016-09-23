@@ -23,7 +23,7 @@ public class WarnFactory {
 	
 	private static PropertiesConfiguration conf;
 	private static String  fileName= "agent-rule.properties";
-	private static Map<String ,Regulation> ruleMap;
+	private static Map<String ,Map<String,Regulation>> ruleMap;
 	private static Map<String, Transmission> transmitMap;
 	static{
 		init();
@@ -49,7 +49,7 @@ public class WarnFactory {
 	 * @param key
 	 * @return
 	 */
-	public static Regulation getRule(String key){
+	public static Map<String,Regulation> getRule(String key){
 		return ruleMap.get(key);
 	}
 	public static Map<String, Transmission> getTransmitMap() {
@@ -63,6 +63,7 @@ public class WarnFactory {
 			Transmission tran = new Transmission();
 			tran.setId(idstr);
 			tran.setType(conf.getString("connection." + idstr + ".type"));
+			tran.setInterval(conf.getLong("connection." + idstr + ".interval",120000L));
 			Iterator<String> it = conf.getKeys("connection." + idstr);
 			Map<String, String> otherMap = new HashMap<>();
 			while(it.hasNext()) {
@@ -80,26 +81,29 @@ public class WarnFactory {
 	 * GLOBAL 等级最低
 	 */
 	private static void createRuleMap() {
-		ruleMap = new HashMap<String, Regulation>();
+		ruleMap = new HashMap<String ,Map<String,Regulation>>();
 		List<Object> ids = conf.getList("rule.id");
 		String hostName = null;
 		try {
 			hostName = InetAddress.getLocalHost().getHostName();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("解析配置文件是 获取主机名错误",e);
 		}
 		for(Object id : ids) {
-			
+			//解析配置文件,装配到regulation中
 			String idStr = id.toString().trim();
 			Regulation rule = new Regulation();
 			rule.setId(Integer.parseInt(idStr));
 			String goal =  conf.getString("rule." + idStr + ".goal");
-			rule.setType(conf.getString("rule." + idStr + ".type"));
-			rule.setGoal(conf.getString("rule." + idStr + ".goal"));
-			rule.setCount(conf.getString("rule." + idStr + ".count"));
-			rule.setScope(conf.getString("rule." + idStr + ".scope"));
+			String name = conf.getString("rule." + idStr + ".name");
+			String scope = conf.getString("rule." + idStr + ".scope");
 			
+			rule.setType(conf.getString("rule." + idStr + ".type"));
+			rule.setGoal(goal);
+			rule.setCount(conf.getString("rule." + idStr + ".count"));
+			rule.setScope(scope);
+			rule.setName(name);
 			if(conf.getString("rule." + idStr + ".type").equals("number")) {
 				rule.setSign(conf.getString("rule." + idStr + ".sign"));
 				rule.setWarnLimit(conf.getFloat("rule." + idStr + ".warn.limit"));
@@ -111,20 +115,32 @@ public class WarnFactory {
 				tList.add(tid.toString());
 			}
 			rule.setTransmitList(tList);
-			
-			Regulation regul = ruleMap.get(goal);
-			if(regul == null  && (rule.getScope().equals(hostName) ||rule.getScope().equals("GLOBAL"))) {
-				ruleMap.put(goal, rule);
-			} else {
-				if(rule.getScope().equals(hostName)&&regul.getScope().equals("GLOBAL")) {
-					ruleMap.put(goal, rule);
-				} else if(rule.getScope().equals(hostName)&&regul.getScope().equals(hostName)) {
-					if(rule.getId() > regul.getId()) {
-						ruleMap.put(goal, rule);
+			log.info("解析到rule : " + rule);
+			//分析配置文件,装在到map中
+			Map<String,Regulation> regul = ruleMap.get(goal);
+			if(regul == null) {
+				Map<String,Regulation> map = new HashMap<>();
+				map.put(name, rule);
+				ruleMap.put(goal, map);
+			} else if(rule.getScope().equals(hostName) ||rule.getScope().equals("GLOBAL")) {
+				if(regul.size() == 0 ) {
+					regul.put(name, rule);
+					continue;
+				}
+				Regulation rtmp = regul.get(name);
+				if(rtmp == null) {
+					regul.put(name, rule);
+					continue;
+				} 
+				if(rule.getScope().equals(hostName)&&rtmp.getScope().equals("GLOBAL")) {
+					regul.put(name, rule);
+				} else if(rule.getScope().equals(hostName)&&rtmp.getScope().equals(hostName)) {
+					if(rule.getId() > rtmp.getId()) {
+						regul.put(name, rule);
 					}
-				} else if(rule.getScope().equals("GLOBAL")&&regul.getScope().equals("GLOBAL")) {
-					if(rule.getId() > regul.getId()) {
-						ruleMap.put(goal, rule);
+				} else if(rule.getScope().equals("GLOBAL")&&rtmp.getScope().equals("GLOBAL")) {
+					if(rule.getId() > rtmp.getId()) {
+						regul.put(name, rule);
 					}
 				}
 			}
@@ -133,7 +149,11 @@ public class WarnFactory {
 	public static void main(String[] args) throws Exception {
 		
 		while(true) {
-			System.out.println(WarnFactory.getRule("disk"));
+			Map<String, Regulation> map = WarnFactory.getRule("io");
+			for(String key : map.keySet()) {
+				System.out.println(key + " : " + map.get(key));
+			}
+			System.out.println("-------------------------");
 			Thread.sleep(2000);
 		}
 	}

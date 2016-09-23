@@ -70,6 +70,7 @@ public class Disk  {
 	 * 单位KB
 	 */
 	private long size;
+	private String unit = "kb/s";
 	/**
 	 * 硬盘使用量
 	 * 单位KB
@@ -218,6 +219,12 @@ public class Disk  {
 				+ selectorWrite + ", selectorWriteTime=" + selectorWriteTime + ", request=" + request + ", requestTime="
 				+ requestTime + ", requestComTime=" + requestComTime + ", size=" + size + ", used=" + used + ", type="
 				+ type + ", owner=" + owner + ", mount=" + mount + "]";
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 	
 	

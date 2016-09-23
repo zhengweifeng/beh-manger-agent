@@ -48,7 +48,10 @@ public class PropertiesUtil {
 					c.load(file2);
 				} else {
 					log.info("加载配置文件 : " + file.getPath());
-					c.load(PropertiesUtil.class.getResourceAsStream("/" + name));
+					if(file.exists()) {						
+						c.load(file);						
+					}
+					
 				}
 			}
 			

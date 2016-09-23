@@ -6,6 +6,7 @@ public class Transmission {
 
 	private String id;
 	private String type;
+	private long interval;
 	private Map<String, String> otherMap;
 	public String getId() {
 		return id;
@@ -25,9 +26,16 @@ public class Transmission {
 	public void setOtherMap(Map<String, String> otherMap) {
 		this.otherMap = otherMap;
 	}
+	
+	public long getInterval() {
+		return interval;
+	}
+	public void setInterval(long interval) {
+		this.interval = interval;
+	}
 	@Override
 	public String toString() {
-		return "Transmission [id=" + id + ", type=" + type + ", otherMap=" + otherMap + "]";
+		return "Transmission [id=" + id + ", type=" + type + ", interval=" + interval + ", otherMap=" + otherMap + "]";
 	}
 	
 }
