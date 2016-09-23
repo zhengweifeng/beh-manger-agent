@@ -6,6 +6,7 @@ package com.bonc.entity;
  */
 public class NetworkMonitor {
 	private String name;
+	private String unit = "byte/s";
 	private long downSpeed;
 	private long downPack;
 	private long downErr;
@@ -73,6 +74,12 @@ public class NetworkMonitor {
 		return "NetworkMonitor [name=" + name + ", downSpeed=" + downSpeed + ", downPack=" + downPack + ", downErr="
 				+ downErr + ", downDrop=" + downDrop + ", uploadSpeed=" + uploadSpeed + ", uploadPack=" + uploadPack
 				+ ", uploadErr=" + uploadErr + ", uploadDrop=" + uploadDrop + "]";
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 	
 	

@@ -1,6 +1,8 @@
 package com.bonc.transmit;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import org.apache.commons.logging.Log;
@@ -24,18 +26,12 @@ public class TransmissionCenter implements Runnable{
 		while(true) {
 			try {
 				JSONObject errorJson = errorQueue.take();
-				log.info("导出数据" + errorJson);
-				//{"name":"disk","data":[
-				//	{"type":"warn","limit":10,"count":"used/size*100","data":{"type":"PARTITION","name":"vda1","mount":"/boot","owner":"vda","size":253871,"used":32538},"num":12.816745512484687}
-				//],
-				//"timesmap":1474279915905,"hostName":"hadoop031",
-				//"rule":{"count":"used/size*100","errorLimit":99,"goal":"disk","id":1,"scope":"GLOBAL","sign":"GE",
-				//"transmitList":[m10,m11]}}
+				log.debug("导出数据" + errorJson);
 				JSONArray array = errorJson.getJSONObject("rule").getJSONArray("transmitList");
 				Iterator<String> iterator = array.iterator();
 				while(iterator.hasNext()) {
 					String tid = iterator.next();
-					IExport export = TransmissionFactory.getExport(tid);
+					IExport export = new TransmissionFactory(tid);
 					export.export(errorJson);
 				}
 			} catch (InterruptedException e) {

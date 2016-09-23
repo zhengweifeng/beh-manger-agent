@@ -12,6 +12,7 @@ import com.bonc.transmit.Transmission;
 public class Regulation {
 
 	private int id;
+	private String name;
 	//规则类型,数值型,还是 boolean行
 	private String type;
 	//规则对应对象
@@ -85,11 +86,18 @@ public class Regulation {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
-		return "Regulation [id=" + id + ", type=" + type + ", goal=" + goal + ", count=" + count + ", scope=" + scope
-				+ ", sign=" + sign + ", warnLimit=" + warnLimit + ", errorLimit=" + errorLimit + ", transmitList="
-				+ transmitList + "]";
+		return "Regulation [id=" + id + ", name=" + name + ", type=" + type + ", goal=" + goal + ", count=" + count
+				+ ", scope=" + scope + ", sign=" + sign + ", warnLimit=" + warnLimit + ", errorLimit=" + errorLimit
+				+ ", transmitList=" + transmitList + "]";
 	}
 	
 	
