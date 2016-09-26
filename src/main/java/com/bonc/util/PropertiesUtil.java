@@ -48,10 +48,7 @@ public class PropertiesUtil {
 					c.load(file2);
 				} else {
 					log.info("加载配置文件 : " + file.getPath());
-					if(file.exists()) {						
-						c.load(file);						
-					}
-					
+					c.load(PropertiesUtil.class.getResourceAsStream("/" + name));						
 				}
 			}
 			
@@ -86,7 +83,7 @@ public class PropertiesUtil {
 		//PropertiesUtil.setConfigPath("/Users/zwf/BEH-Manager-Agent");
 		//PropertiesConfiguration cf = PropertiesUtil.getOtherConf("agent-rule.properties");
 		while(true) {
-			System.out.println(PropertiesUtil.get("ssh.auth.userName"));
+			System.out.println(PropertiesUtil.get("hadoop.home"));
 			//System.out.println(cf.getStringArray("rule.id"));
 			//System.out.println(cf.getProperty("rule.id"));
 			try {
