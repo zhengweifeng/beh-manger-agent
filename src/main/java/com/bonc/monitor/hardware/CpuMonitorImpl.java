@@ -1,8 +1,9 @@
-package com.bonc.monitor;
+package com.bonc.monitor.hardware;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.bonc.monitor.IMonitor;
 import com.bonc.parse.CpuParse;
 
 import net.sf.json.JSONArray;

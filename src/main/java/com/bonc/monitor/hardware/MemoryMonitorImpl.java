@@ -1,6 +1,7 @@
-package com.bonc.monitor;
+package com.bonc.monitor.hardware;
 
 import com.bonc.entity.Memory;
+import com.bonc.monitor.IMonitor;
 import com.bonc.parse.MemoryParse;
 
 import net.sf.json.JSONArray;

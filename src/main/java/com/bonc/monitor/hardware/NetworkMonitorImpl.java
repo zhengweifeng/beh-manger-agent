@@ -1,8 +1,9 @@
-package com.bonc.monitor;
+package com.bonc.monitor.hardware;
 
 import java.util.List;
 
 import com.bonc.entity.NetworkMonitor;
+import com.bonc.monitor.IMonitor;
 import com.bonc.parse.NetworkParse;
 
 import net.sf.json.JSONArray;
