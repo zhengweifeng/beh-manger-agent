@@ -1,4 +1,4 @@
-package com.bonc.monitor;
+package com.bonc.monitor.hardware;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.bonc.entity.IO;
+import com.bonc.monitor.IMonitor;
 import com.bonc.parse.DiskParse;
 
 import net.sf.json.JSONArray;
