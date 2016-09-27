@@ -12,12 +12,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.bonc.monitor.CpuMonitorImpl;
-import com.bonc.monitor.DiskMonitor;
-import com.bonc.monitor.IOMonitor;
-import com.bonc.monitor.MemoryMonitorImpl;
 import com.bonc.monitor.MonitorCenter;
-import com.bonc.monitor.NetworkMonitorImpl;
+import com.bonc.monitor.hardware.CpuMonitorImpl;
+import com.bonc.monitor.hardware.DiskMonitor;
+import com.bonc.monitor.hardware.IOMonitor;
+import com.bonc.monitor.hardware.MemoryMonitorImpl;
+import com.bonc.monitor.hardware.NetworkMonitorImpl;
 import com.bonc.transmit.TransmissionCenter;
 import com.bonc.util.PropertiesUtil;
 import com.bonc.util.WarnFactory;
