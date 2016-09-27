@@ -8,6 +8,11 @@ public class MessageExport implements IExport{
 		
 	}
 
+	public  MessageExport() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void init(Transmission tran){}
 	@Override
 	public void export(JSONObject json) {
 		// TODO Auto-generated method stub

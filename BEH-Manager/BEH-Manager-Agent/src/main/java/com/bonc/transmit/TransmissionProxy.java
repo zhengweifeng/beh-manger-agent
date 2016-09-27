@@ -6,43 +6,21 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.bonc.util.WarnFactory;
+import com.bonc.util.RuleUtil;
 
 import net.sf.json.JSONObject;
 
-public class TransmissionFactory implements IExport{
+public class TransmissionProxy implements IExport{
 
-	private static Log log = LogFactory.getLog(TransmissionFactory.class);
-	private static Map<String, Transmission> tranMap = WarnFactory.getTransmitMap();
+	private static Log log = LogFactory.getLog(TransmissionProxy.class);
+	private static Map<String, Transmission> tranMap = RuleUtil.getTransmitMap();
 	private static  Map<String , IExport> exportMap = new HashMap<>();
 	private static Map<String,Long> timeMap = new HashMap<>();
 	private IExport source;
 	private String key;
-	static {
-		
-		for(String key : tranMap.keySet()) {
-			Transmission tran = tranMap.get(key);
-			switch(tran.getType()){
-			case "hbase":
-				exportMap.put(key, new HBaseExport(tran));
-				break;
-			case "http":
-				exportMap.put(key, new HTTPExport(tran));
-				break;
-			case "mail":
-				exportMap.put(key, new MailExport(tran));
-				break;
-			case "message":
-				exportMap.put(key, new MessageExport(tran));
-				break;
-			default:
-				log.error("不能识别告警数据导出类型: " + tran);
-			}
-		}
-		
-	}
 	
-	public TransmissionFactory(String key) {
+	
+	public TransmissionProxy(String key) {
 		this.source = exportMap.get(key);
 		this.key = key;
 	}
@@ -71,6 +49,14 @@ public class TransmissionFactory implements IExport{
 			}
 			return false;
 		}
+	}
+
+	public static void register(String type, IExport export) {
+		exportMap.put(type, export);
+	}
+
+	@Override
+	public void init(Transmission tran) {
 	};
 	
 }

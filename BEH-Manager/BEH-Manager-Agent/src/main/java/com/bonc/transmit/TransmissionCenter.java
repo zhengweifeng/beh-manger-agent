@@ -31,7 +31,7 @@ public class TransmissionCenter implements Runnable{
 				Iterator<String> iterator = array.iterator();
 				while(iterator.hasNext()) {
 					String tid = iterator.next();
-					IExport export = new TransmissionFactory(tid);
+					IExport export = new TransmissionProxy(tid);
 					export.export(errorJson);
 				}
 			} catch (InterruptedException e) {

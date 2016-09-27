@@ -48,12 +48,18 @@ public class HBaseExport implements IExport {
 		
 	}
 	public HBaseExport(Transmission trans) {
+		init(trans);
+	}
+
+	public HBaseExport(){
+		
+	}
+	public void init(Transmission trans) {
 		tableName = trans.getOtherMap().get("connection."+ trans.getId() +".hbase.tablename");
 		key = UUID.randomUUID().toString();
 		family = Bytes.toBytes(trans.getOtherMap().get("connection." + trans.getId() + ".hbase.family"));
 		HbaseUtil.register(trans, key);
 	}
-
 	
 
 }

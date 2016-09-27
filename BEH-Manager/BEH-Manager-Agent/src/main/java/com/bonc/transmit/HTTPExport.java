@@ -8,6 +8,10 @@ public class HTTPExport implements IExport{
 		// TODO Auto-generated constructor stub
 	}
 
+	public  HTTPExport() {
+		// TODO Auto-generated constructor stub
+	}
+	public void init(Transmission tran) {}
 	@Override
 	public void export(JSONObject json) {
 		// TODO Auto-generated method stub
